@@ -43,6 +43,7 @@ class CSV:
         # compara as datas já convertidas para 'datatime', caso fosse string não era possível
         mask = (df["date"] >= start_date) & (df["date"] <= end_date) 
         filtered_df = df.loc[mask] # cria um dataframe somente com linhas que passaram no mask
+        filtered_df = filtered_df.sort_values(by="date") # ordena por data
 
         if filtered_df.empty:
             print("Nenhuma transação encontrada nesse intervalo de datas.")
@@ -61,6 +62,8 @@ class CSV:
             print(f"\nTotal de Renda: R${total_income:.2f}")
             print(f"Total de Despesa: R${total_expense:.2f}")
             print(f"Saldo Líquido: R${(total_income - total_expense):.2f}")
+
+
 
             return filtered_df
 
